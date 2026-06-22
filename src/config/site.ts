@@ -11,6 +11,14 @@ export const site = {
   url: env.PUBLIC_SITE_URL || "https://www.madeartes.com",
   whatsapp: env.PUBLIC_WHATSAPP || "573154377743",
   whatsappPretty: "315 437 7743",
+  email: env.PUBLIC_EMAIL || "contacto@madeartes.com",
+};
+
+// Redes sociales (reemplaza por los perfiles reales).
+export const social = {
+  instagram: env.PUBLIC_INSTAGRAM || "https://instagram.com/madeartes",
+  tiktok: env.PUBLIC_TIKTOK || "https://tiktok.com/@madeartes",
+  facebook: env.PUBLIC_FACEBOOK || "https://facebook.com/madeartes",
 };
 
 // Configuración de servicios de Google. Solo se cargan los scripts

@@ -1,14 +1,32 @@
 ---
+import { Icon } from "astro-icon/components";
 import Brand from "./Brand.astro";
+import Social from "./Social.astro";
 import { site, whatsappLink } from "../config/site";
 const year = new Date().getFullYear();
 ---
 
 <footer class="footer">
+  <!-- borde decorativo tipo veta de madera -->
+  <div class="footer__edge"></div>
+
+  <!-- vector: anillos de árbol (corte de tronco) -->
+  <svg class="footer__rings" viewBox="0 0 320 320" aria-hidden="true">
+    <g fill="none" stroke="currentColor" stroke-width="2">
+      <ellipse cx="160" cy="160" rx="18" ry="20" />
+      <ellipse cx="156" cy="162" rx="40" ry="44" />
+      <ellipse cx="162" cy="158" rx="64" ry="68" />
+      <ellipse cx="158" cy="161" rx="90" ry="94" />
+      <ellipse cx="161" cy="159" rx="116" ry="120" />
+      <ellipse cx="159" cy="160" rx="142" ry="146" />
+    </g>
+  </svg>
+
   <div class="container footer__inner">
     <div class="footer__brand">
       <Brand light={true} />
       <p>Muebles de madera a medida para hogar y empresa. Diseño, fabricación e instalación con acabado artesanal.</p>
+      <Social cls="social--footer" />
     </div>
 
     <div class="footer__col">
@@ -28,18 +46,27 @@ const year = new Date().getFullYear();
       <a href="/cookies">Política de cookies</a>
     </div>
 
-    <div class="footer__col">
-      <h4>Contacto</h4>
-      <a href={whatsappLink()} target="_blank" rel="noopener">WhatsApp {site.whatsappPretty}</a>
-      <a href="/contacto">Cotizar proyecto</a>
-      <span>Lun a Sáb · 8:00 – 18:00</span>
-      <span>Colombia</span>
+    <div class="footer__contact">
+      <h4>Hablemos</h4>
+      <ul>
+        <li><Icon name="lucide:phone" width="17" height="17" /> <a href={`tel:+${site.whatsapp}`}>{site.whatsappPretty}</a></li>
+        <li><Icon name="lucide:mail" width="17" height="17" /> <a href={`mailto:${site.email}`}>{site.email}</a></li>
+        <li><Icon name="lucide:clock" width="17" height="17" /> <span>Lun a Sáb · 8:00 – 18:00</span></li>
+        <li><Icon name="lucide:map-pin" width="17" height="17" /> <span>Cobertura en toda Colombia</span></li>
+      </ul>
+      <a href={whatsappLink("Hola Madeartes, quiero cotizar un proyecto.")} target="_blank" rel="noopener" class="btn btn--primary footer__wa">
+        <Icon name="lucide:message-circle" width="18" height="18" /> Escríbenos por WhatsApp
+      </a>
     </div>
   </div>
+
+  <!-- marca grande de fondo -->
+  <div class="footer__wordmark" aria-hidden="true">Madeartes</div>
+
   <div class="footer__bottom">
-    <div class="container">
+    <div class="container footer__bottom-inner">
       <span>© {year} Madeartes. Todos los derechos reservados.</span>
-      <span>Hecho con madera y dedicación 🪵</span>
+      <span class="footer__made">Hecho con madera y dedicación <Icon name="lucide:trees" width="15" height="15" /></span>
     </div>
   </div>
 </footer>
