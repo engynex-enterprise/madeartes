@@ -1,0 +1,35 @@
+---
+const milestones = [
+  { year: "2009", title: "Nace el taller", text: "Empezamos con un pequeño taller y un gran amor por la carpintería fina." },
+  { year: "2014", title: "Cocinas integrales", text: "Llevamos el diseño a medida a las cocinas de cientos de hogares." },
+  { year: "2018", title: "Línea Empresa", text: "Comenzamos a amoblar oficinas, restaurantes y comercios con mobiliario corporativo." },
+  { year: "2022", title: "+500 proyectos", text: "Superamos los 500 espacios transformados en madera en todo el país." },
+  { year: "2026", title: "Diseño con AR", text: "Incorporamos realidad aumentada para que veas tu mueble antes de fabricarlo." },
+];
+---
+
+<section class="section section--alt has-geo" id="historia">
+  <span class="geo geo--ring" style="width:170px;height:170px;top:50px;right:-40px;"></span>
+  <div class="container">
+    <header class="section__head" data-reveal>
+      <span class="eyebrow">Nuestra historia</span>
+      <h2>Un camino hecho a mano</h2>
+      <p>Cada año nos acercó más a lo que somos hoy: un equipo que vive de crear muebles únicos.</p>
+    </header>
+
+    <ol class="milestones">
+      {
+        milestones.map((m, i) => (
+          <li class={`milestone${i % 2 ? " milestone--right" : ""}`} data-reveal>
+            <div class="milestone__dot"></div>
+            <div class="milestone__card">
+              <span class="milestone__year">{m.year}</span>
+              <h3>{m.title}</h3>
+              <p>{m.text}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

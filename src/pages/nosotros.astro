@@ -1,15 +1,17 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import PageHeader from "../components/PageHeader.astro";
+import AboutStory from "../components/AboutStory.astro";
+import Milestones from "../components/Milestones.astro";
 import WhyUs from "../components/WhyUs.astro";
 import Process from "../components/Process.astro";
-import Partners from "../components/Partners.astro";
+import Team from "../components/Team.astro";
 import Cta from "../components/Cta.astro";
 ---
 
 <Layout
   title="Nosotros | Madeartes — Carpintería fina"
-  description="Más de 15 años de oficio en carpintería. Conoce por qué cientos de hogares y empresas confían en Madeartes para sus muebles de madera a medida."
+  description="Más de 15 años de oficio en carpintería. Conoce nuestra historia, nuestro equipo y por qué cientos de hogares y empresas confían en Madeartes."
 >
   <PageHeader
     eyebrow="Sobre Madeartes"
@@ -18,8 +20,10 @@ import Cta from "../components/Cta.astro";
     current="Nosotros"
     image="https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=1600&q=80"
   />
+  <AboutStory />
+  <Milestones />
   <WhyUs />
   <Process />
-  <Partners />
+  <Team />
   <Cta />
 </Layout>

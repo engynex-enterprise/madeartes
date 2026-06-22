@@ -1,0 +1,32 @@
+---
+const team = [
+  { name: "Carlos Mendoza", role: "Maestro carpintero & fundador", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=500&q=80" },
+  { name: "Daniela Ortiz", role: "Diseñadora de interiores", img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=500&q=80" },
+  { name: "Andrés Lozano", role: "Jefe de taller", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=500&q=80" },
+  { name: "María Fernanda", role: "Coordinadora de instalación", img: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=500&q=80" },
+];
+---
+
+<section class="section section--glow" id="equipo">
+  <span class="geo geo--dots" style="top:40px;left:30px;"></span>
+  <span class="geo geo--tri" style="bottom:50px;right:46px;"></span>
+  <div class="container">
+    <header class="section__head" data-reveal>
+      <span class="eyebrow">Nuestro equipo</span>
+      <h2>Las manos detrás de cada mueble</h2>
+      <p>Personas que aman lo que hacen y cuidan cada detalle de tu proyecto.</p>
+    </header>
+
+    <div class="team">
+      {
+        team.map((t, i) => (
+          <article class="team__card" data-reveal style={`--d:${(i % 4) * 70}ms`}>
+            <div class="team__photo"><img src={t.img} alt={t.name} loading="lazy" width="500" height="600" /></div>
+            <h3>{t.name}</h3>
+            <span class="team__role">{t.role}</span>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

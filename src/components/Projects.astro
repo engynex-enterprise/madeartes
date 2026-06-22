@@ -6,6 +6,8 @@ const filters = [
   { key: "cocina", label: "Cocinas" },
 ];
 
+const { cta = false } = Astro.props;
+
 const projects = [
   { img: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80", alt: "Muebles de madera para dormitorio", cat: "hogar", title: "Dormitorio principal", place: "Bogotá" },
   { img: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=800&q=80", alt: "Oficina con muebles de madera", cat: "empresa", title: "Oficina corporativa", place: "Medellín" },
@@ -47,6 +49,12 @@ const projects = [
         ))
       }
     </div>
+
+    {cta && (
+      <div class="gallery__cta" data-reveal>
+        <a href="/proyectos" class="btn btn--primary">Ver todos los proyectos</a>
+      </div>
+    )}
   </div>
 </section>
 

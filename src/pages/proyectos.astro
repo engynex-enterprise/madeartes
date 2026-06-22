@@ -1,7 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import PageHeader from "../components/PageHeader.astro";
+import FeaturedProject from "../components/FeaturedProject.astro";
 import Projects from "../components/Projects.astro";
+import BeforeAfter from "../components/BeforeAfter.astro";
 import Reviews from "../components/Reviews.astro";
 import Cta from "../components/Cta.astro";
 ---
@@ -17,7 +19,9 @@ import Cta from "../components/Cta.astro";
     current="Proyectos"
     image="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1600&q=80"
   />
+  <FeaturedProject />
   <Projects />
+  <BeforeAfter />
   <Reviews />
   <Cta />
 </Layout>

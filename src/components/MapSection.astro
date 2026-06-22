@@ -1,0 +1,41 @@
+---
+import { Icon } from "astro-icon/components";
+import { site, whatsappLink } from "../config/site";
+// Ubicación de ejemplo (cobertura nacional). Reemplaza la consulta por tu dirección real.
+const mapQuery = "Bogotá, Colombia";
+const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(mapQuery)}&output=embed`;
+---
+
+<section class="section section--alt has-geo" id="mapa">
+  <span class="geo geo--ring" style="width:160px;height:160px;top:40px;right:-40px;"></span>
+  <div class="container">
+    <header class="section__head section__head--left" data-reveal>
+      <span class="eyebrow">Dónde estamos</span>
+      <h2>Fabricamos a medida en toda Colombia</h2>
+      <p>Atendemos proyectos en todo el país. Agenda una visita o cuéntanos tu idea por WhatsApp.</p>
+    </header>
+
+    <div class="map-wrap" data-reveal>
+      <iframe
+        class="map-frame"
+        src={mapSrc}
+        title="Ubicación de Madeartes"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        allowfullscreen
+      ></iframe>
+
+      <div class="map-card">
+        <h3>Madeartes</h3>
+        <ul>
+          <li><Icon name="lucide:map-pin" width="18" height="18" /> <span>[Dirección del taller], Colombia</span></li>
+          <li><Icon name="lucide:clock" width="18" height="18" /> <span>Lun a Sáb · 8:00 a.m. – 6:00 p.m.</span></li>
+          <li><Icon name="lucide:phone" width="18" height="18" /> <a href={`tel:+${site.whatsapp}`}>{site.whatsappPretty}</a></li>
+        </ul>
+        <a href={whatsappLink("Hola Madeartes, quiero agendar una visita.")} target="_blank" rel="noopener" class="btn btn--primary btn--block">
+          <Icon name="lucide:calendar-clock" width="18" height="18" /> Agendar una visita
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

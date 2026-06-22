@@ -1,0 +1,53 @@
+---
+import { Icon } from "astro-icon/components";
+
+const cards = [
+  {
+    icon: "lucide:home",
+    tag: "Línea Hogar",
+    title: "Para tu hogar",
+    img: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=900&q=80",
+    items: ["Cocinas integrales", "Closets y vestidores", "Comedores y mesas", "Salas y muebles de estar"],
+  },
+  {
+    icon: "lucide:building-2",
+    tag: "Línea Empresa",
+    title: "Para tu empresa",
+    img: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=80",
+    items: ["Oficinas y coworkings", "Recepciones y mostradores", "Restaurantes y cafés", "Hoteles y comercios"],
+  },
+];
+---
+
+<section class="section section--alt has-geo" id="lineas-split">
+  <span class="geo geo--dots" style="top:40px;left:24px;"></span>
+  <div class="container">
+    <header class="section__head" data-reveal>
+      <span class="eyebrow">Dos líneas, una misma calidad</span>
+      <h2>Soluciones para hogar y empresa</h2>
+      <p>Diseñamos a la medida de cada espacio, ya sea tu casa o tu negocio.</p>
+    </header>
+
+    <div class="lines-split">
+      {
+        cards.map((c, i) => (
+          <article class="lsplit" data-reveal style={`--d:${i * 90}ms`}>
+            <div class="lsplit__media">
+              <img src={c.img} alt={c.title} loading="lazy" width="900" height="600" />
+              <span class="lsplit__tag"><Icon name={c.icon} width="15" height="15" /> {c.tag}</span>
+            </div>
+            <div class="lsplit__body">
+              <h3>{c.title}</h3>
+              <ul>
+                {c.items.map((it) => (
+                  <li><Icon name="lucide:check" width="17" height="17" /> {it}</li>
+                ))}
+              </ul>
+              <a href="/contacto" class="btn btn--ghost">Cotizar <Icon name="lucide:arrow-right" width="15" height="15" /></a>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

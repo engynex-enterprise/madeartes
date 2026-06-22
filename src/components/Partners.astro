@@ -7,24 +7,38 @@ const items = [
   { icon: "lucide:utensils", label: "Restaurantes" },
   { icon: "lucide:shopping-bag", label: "Comercios" },
   { icon: "lucide:bed-double", label: "Hoteles" },
+  { icon: "lucide:hard-hat", label: "Constructoras" },
+  { icon: "lucide:coffee", label: "Cafés" },
 ];
+// Duplicamos para un marquee continuo.
+const loop = [...items, ...items];
 ---
 
-<section class="partners has-geo">
-  <span class="geo geo--dots" style="top:-30px; left:24px;"></span>
-  <span class="geo geo--ring" style="width:120px; height:120px; bottom:-50px; right:60px;"></span>
-  <span class="geo geo--tri" style="top:20px; right:32px;"></span>
+<section class="partners">
   <div class="container">
-    <p class="partners__title">Confían en nosotros hogares y empresas en todo el país</p>
-    <ul class="partners__logos">
+    <div class="trust">
+      <span class="trust__rating">
+        <span class="trust__stars">
+          {[1, 2, 3, 4, 5].map(() => <Icon name="lucide:star" width="16" height="16" />)}
+        </span>
+        <strong>4.9/5</strong>
+        <span class="trust__sep"></span>
+        <span>+500 proyectos entregados en toda Colombia</span>
+      </span>
+    </div>
+  </div>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
       {
-        items.map((i) => (
-          <li>
-            <Icon name={i.icon} width="20" height="20" />
+        loop.map((i) => (
+          <span class="marquee__item">
+            <Icon name={i.icon} width="22" height="22" />
             {i.label}
-          </li>
+            <span class="marquee__dot"></span>
+          </span>
         ))
       }
-    </ul>
+    </div>
   </div>
 </section>

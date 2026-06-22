@@ -1,0 +1,35 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<section class="section section--dark section--glow" id="antes-despues">
+  <span class="geo geo--ring" style="width:170px;height:170px;top:40px;left:44%;"></span>
+  <div class="container">
+    <header class="section__head" data-reveal>
+      <span class="eyebrow">Antes y después</span>
+      <h2>Vemos potencial donde otros ven un espacio vacío</h2>
+      <p>Arrastra el control para ver cómo transformamos un espacio con muebles a medida.</p>
+    </header>
+
+    <div class="ba" data-ba data-reveal style="--pos:50%">
+      <img class="ba__img" src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1400&q=80" alt="Espacio después de amoblar" loading="lazy" />
+      <div class="ba__before">
+        <img class="ba__img" src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=1400&q=80" alt="Espacio antes de amoblar" loading="lazy" />
+      </div>
+      <span class="ba__label ba__label--before">Antes</span>
+      <span class="ba__label ba__label--after">Después</span>
+      <div class="ba__handle" aria-hidden="true"><Icon name="lucide:move-horizontal" width="20" height="20" /></div>
+      <input class="ba__range" type="range" min="0" max="100" value="50" aria-label="Comparar antes y después" data-ba-range />
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-ba]").forEach((ba) => {
+    const range = ba.querySelector<HTMLInputElement>("[data-ba-range]");
+    if (!range) return;
+    const update = () => ba.style.setProperty("--pos", range.value + "%");
+    range.addEventListener("input", update);
+    update();
+  });
+</script>

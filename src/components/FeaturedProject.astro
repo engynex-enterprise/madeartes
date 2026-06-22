@@ -1,0 +1,39 @@
+---
+import { Icon } from "astro-icon/components";
+
+const specs = [
+  { icon: "lucide:layout-grid", label: "Tipo", value: "Cocina integral" },
+  { icon: "lucide:trees", label: "Material", value: "Roble y melamina premium" },
+  { icon: "lucide:map-pin", label: "Lugar", value: "Bogotá" },
+  { icon: "lucide:clock", label: "Entrega", value: "4 semanas" },
+];
+---
+
+<section class="section section--glow has-geo" id="destacado">
+  <span class="geo geo--blob" style="width:240px;height:240px;top:-70px;right:-60px;"></span>
+  <div class="container featured">
+    <div class="featured__media" data-reveal>
+      <img src="https://images.unsplash.com/photo-1556909212-d5b604d0c90d?auto=format&fit=crop&w=1100&q=80" alt="Cocina integral en madera, proyecto destacado" loading="lazy" width="1100" height="800" />
+      <span class="featured__tag"><Icon name="lucide:star" width="14" height="14" /> Proyecto destacado</span>
+    </div>
+
+    <div class="featured__info" data-reveal>
+      <span class="eyebrow">Caso de éxito</span>
+      <h2>Una cocina pensada al milímetro</h2>
+      <p>
+        Transformamos una cocina compacta en un espacio amplio y funcional, aprovechando cada
+        rincón con almacenamiento inteligente, herrajes de cierre suave y acabados que resisten
+        el día a día.
+      </p>
+      <ul class="featured__specs">
+        {specs.map((s) => (
+          <li>
+            <span class="featured__spec-ico"><Icon name={s.icon} width="18" height="18" /></span>
+            <span><strong>{s.label}</strong>{s.value}</span>
+          </li>
+        ))}
+      </ul>
+      <a href="/contacto" class="btn btn--primary">Quiero un proyecto así <Icon name="lucide:arrow-right" width="16" height="16" /></a>
+    </div>
+  </div>
+</section>

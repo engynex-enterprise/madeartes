@@ -1,0 +1,50 @@
+---
+import { Icon } from "astro-icon/components";
+
+const stats = [
+  { num: "15+", label: "años de oficio" },
+  { num: "+500", label: "proyectos entregados" },
+  { num: "100%", label: "a medida" },
+];
+---
+
+<section class="section has-geo" id="historia-intro">
+  <span class="geo geo--blob" style="width:240px;height:240px;top:-70px;right:-60px;"></span>
+  <span class="geo geo--dots" style="bottom:30px;left:24px;"></span>
+
+  <div class="container about-story">
+    <div class="about-story__media" data-reveal>
+      <img class="about-story__img-main" src="https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=900&q=80" alt="Carpintero trabajando la madera en el taller" loading="lazy" width="900" height="1000" />
+      <img class="about-story__img-sub" src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=600&q=80" alt="Detalle de acabado en madera" loading="lazy" width="600" height="600" />
+      <div class="about-story__badge">
+        <Icon name="lucide:hammer" width="22" height="22" />
+        <div><strong>Taller propio</strong><span>cada pieza hecha por nosotros</span></div>
+      </div>
+    </div>
+
+    <div class="about-story__text" data-reveal>
+      <span class="eyebrow">Quiénes somos</span>
+      <h2>Más de 15 años dando forma a la madera</h2>
+      <p>
+        Madeartes nació de la pasión por la carpintería fina: convertir madera noble en muebles
+        que cuentan historias. Lo que empezó como un taller pequeño hoy es un equipo que diseña,
+        fabrica e instala mobiliario a medida para hogares y empresas en toda Colombia.
+      </p>
+      <p>
+        Creemos que un mueble bien hecho transforma un espacio para siempre. Por eso cuidamos
+        cada detalle: desde la selección de la madera hasta el último acabado.
+      </p>
+
+      <div class="about-story__stats">
+        {stats.map((s) => (
+          <div class="about-stat">
+            <strong>{s.num}</strong>
+            <span>{s.label}</span>
+          </div>
+        ))}
+      </div>
+
+      <p class="about-story__sign">— El equipo de Madeartes</p>
+    </div>
+  </div>
+</section>

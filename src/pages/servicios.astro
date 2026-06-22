@@ -2,6 +2,8 @@
 import Layout from "../layouts/Layout.astro";
 import PageHeader from "../components/PageHeader.astro";
 import Services from "../components/Services.astro";
+import LinesSplit from "../components/LinesSplit.astro";
+import Materials from "../components/Materials.astro";
 import BusinessLines from "../components/BusinessLines.astro";
 import ARSection from "../components/ARSection.astro";
 import Faq from "../components/Faq.astro";
@@ -20,7 +22,9 @@ import Cta from "../components/Cta.astro";
     image="https://images.unsplash.com/photo-1556909212-d5b604d0c90d?auto=format&fit=crop&w=1600&q=80"
   />
   <Services />
-  <BusinessLines alt={true} />
+  <LinesSplit />
+  <Materials />
+  <BusinessLines />
   <ARSection />
   <Faq />
   <Cta />
