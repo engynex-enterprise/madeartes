@@ -11,6 +11,12 @@
   --caramel: #b3743c;
   --caramel-dark: #9a5f2e;
   --forest: #2f4a3c;
+  /* pastel accents (armonizan con la madera) */
+  --pastel-sage: #c7dcc9;
+  --pastel-peach: #f1cdb6;
+  --pastel-sky: #cfe0ea;
+  --pastel-butter: #f3e4c4;
+  --pastel-blush: #ecd0cc;
   --line: #e6d9c6;
   --shadow: 0 18px 40px -24px rgba(45, 31, 21, 0.45);
   --shadow-sm: 0 8px 24px -16px rgba(45, 31, 21, 0.5);
@@ -679,14 +685,16 @@ model-viewer {
 }
 .section--glow::before {
   width: 540px; height: 540px; top: -160px; right: -140px;
-  background: radial-gradient(circle, rgba(179, 116, 60, .38), transparent 68%);
+  background: radial-gradient(circle, rgba(241, 205, 182, .6), transparent 68%);
   animation: floatGlow 14s ease-in-out infinite;
 }
 .section--glow::after {
   width: 460px; height: 460px; bottom: -180px; left: -120px;
-  background: radial-gradient(circle, rgba(47, 74, 60, .26), transparent 68%);
+  background: radial-gradient(circle, rgba(199, 220, 201, .55), transparent 68%);
   animation: floatGlow 18s ease-in-out infinite reverse;
 }
+.section--dark.section--glow::before { background: radial-gradient(circle, rgba(241, 205, 182, .28), transparent 68%); }
+.section--dark.section--glow::after { background: radial-gradient(circle, rgba(207, 224, 234, .22), transparent 68%); }
 @keyframes floatGlow {
   0%, 100% { transform: translate(0, 0); }
   50% { transform: translate(-26px, 30px); }
@@ -694,6 +702,29 @@ model-viewer {
 @media (prefers-reduced-motion: reduce) {
   .section--glow::before, .section--glow::after { animation: none; }
 }
+
+/* ===================== FORMAS GEOMÉTRICAS (pastel) ===================== */
+.has-geo { position: relative; overflow: hidden; isolation: isolate; }
+.has-geo > .container { position: relative; z-index: 1; }
+.geo { position: absolute; z-index: 0; pointer-events: none; }
+/* rejilla de puntos */
+.geo--dots {
+  width: 150px; height: 150px; opacity: .6;
+  background-image: radial-gradient(var(--pastel-sage) 2px, transparent 2.4px);
+  background-size: 22px 22px;
+}
+/* anillo */
+.geo--ring { border: 2px solid var(--pastel-peach); border-radius: 50%; opacity: .7; }
+/* arco (cuarto de círculo) */
+.geo--arc { border: 16px solid var(--pastel-sky); border-radius: 50%; border-right-color: transparent; border-bottom-color: transparent; opacity: .6; }
+/* mancha orgánica suave */
+.geo--blob { background: var(--pastel-blush); border-radius: 42% 58% 63% 37% / 41% 44% 56% 59%; opacity: .4; filter: blur(1px); animation: floatGlow 16s ease-in-out infinite; }
+/* triángulo */
+.geo--tri { width: 0; height: 0; border-left: 26px solid transparent; border-right: 26px solid transparent; border-bottom: 44px solid var(--pastel-butter); opacity: .6; }
+/* en secciones oscuras, atenuar un poco */
+.section--dark .geo { opacity: .25; }
+@media (prefers-reduced-motion: reduce) { .geo--blob { animation: none; } }
+@media (max-width: 560px) { .geo { display: none; } }
 
 /* vector decorativo de líneas curvas (topografía de madera) */
 .veil {
