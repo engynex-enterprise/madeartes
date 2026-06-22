@@ -1,0 +1,31 @@
+---
+// Google Analytics 4 (GA4) y Google Ads vía gtag.js.
+// Se usa cuando NO gestionas estas etiquetas dentro de GTM.
+// Carga el script si existe GA4 o Google Ads en el .env.
+import { google } from "../../config/site";
+const { ga4Id, adsId } = google;
+// Usa el primer ID disponible para inicializar gtag.js
+const primaryId = ga4Id || adsId;
+---
+
+{
+  primaryId && (
+    <Fragment>
+      <script
+        is:inline
+        async
+        src={`https://www.googletagmanager.com/gtag/js?id=${primaryId}`}
+      />
+      <script is:inline define:vars={{ ga4Id, adsId }}>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          dataLayer.push(arguments);
+        }
+        window.gtag = gtag;
+        gtag("js", new Date());
+        if (ga4Id) gtag("config", ga4Id);
+        if (adsId) gtag("config", adsId);
+      </script>
+    </Fragment>
+  )
+}

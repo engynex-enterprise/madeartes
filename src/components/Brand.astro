@@ -1,0 +1,17 @@
+---
+interface Props {
+  light?: boolean;
+}
+const { light = false } = Astro.props;
+---
+
+<a href="#top" class={`brand${light ? " brand--light" : ""}`} aria-label="Madeartes inicio">
+  <span class="brand__mark" aria-hidden="true">
+    <svg viewBox="0 0 32 32" width="28" height="28">
+      <path d="M6 24c4-10 16-10 20 0" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"></path>
+      <path d="M10 24c2.5-6 9.5-6 12 0" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"></path>
+      <circle cx="16" cy="9" r="2.4" fill="currentColor"></circle>
+    </svg>
+  </span>
+  <span class="brand__name">Madeartes</span>
+</a>

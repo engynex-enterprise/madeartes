@@ -1,0 +1,52 @@
+---
+const services = [
+  {
+    title: "Cocinas integrales",
+    text: "Cocinas funcionales y elegantes, optimizadas al milímetro de tu espacio.",
+    img: "https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=700&q=80",
+    alt: "Cocina integral de madera",
+  },
+  {
+    title: "Closets y vestidores",
+    text: "Almacenamiento inteligente con acabados finos y herrajes de larga vida.",
+    img: "https://images.unsplash.com/photo-1558997519-83ea9252edf8?auto=format&fit=crop&w=700&q=80",
+    alt: "Closet de madera a medida",
+  },
+  {
+    title: "Comedores y mesas",
+    text: "Comedores, mesas y sillas en madera maciza para reunir a los tuyos.",
+    img: "https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=700&q=80",
+    alt: "Comedor de madera",
+  },
+  {
+    title: "Mobiliario corporativo",
+    text: "Escritorios, recepciones y mostradores que proyectan la imagen de tu marca.",
+    img: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=700&q=80",
+    alt: "Mobiliario corporativo de madera",
+  },
+];
+---
+
+<section class="section" id="servicios">
+  <div class="container">
+    <header class="section__head" data-reveal>
+      <span class="eyebrow">Nuestros servicios</span>
+      <h2>Lo que fabricamos para ti</h2>
+      <p>Mobiliario en madera diseñado para durar, pensado para cada ambiente del hogar y del negocio.</p>
+    </header>
+
+    <div class="features">
+      {
+        services.map((s, i) => (
+          <article class="feature" data-reveal style={`--d:${i * 80}ms`}>
+            <div class="feature__media">
+              <img src={s.img} alt={s.alt} loading="lazy" width="700" height="525" />
+            </div>
+            <h3>{s.title}</h3>
+            <p>{s.text}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

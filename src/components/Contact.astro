@@ -1,0 +1,264 @@
+---
+import { Icon } from "astro-icon/components";
+import { site, google, whatsappLink } from "../config/site";
+
+// Tipos de proyecto según la línea elegida.
+const tipos = [
+  "Cocina integral",
+  "Closet o vestidor",
+  "Comedor o mesa",
+  "Sala / muebles de estar",
+  "Mobiliario corporativo",
+  "Recepción / mostrador",
+  "Otro",
+];
+
+const clientConfig = {
+  whatsapp: site.whatsapp,
+  adsId: google.adsId,
+  adsConversionLabel: google.adsConversionLabel,
+};
+---
+
+<section class="section" id="contacto">
+  <div class="container contact">
+    <div class="contact__info" data-reveal>
+      <span class="eyebrow">Contáctanos</span>
+      <h2>Cuéntanos tu proyecto</h2>
+      <p>Completa el formulario y envíalo. Se abrirá WhatsApp con tu mensaje listo para que conversemos al instante.</p>
+
+      <ul class="contact__list">
+        <li>
+          <span class="contact__ico"><Icon name="lucide:message-circle" width="20" height="20" /></span>
+          <div>
+            <strong>WhatsApp</strong>
+            <a href={whatsappLink()} target="_blank" rel="noopener">{site.whatsappPretty}</a>
+          </div>
+        </li>
+        <li>
+          <span class="contact__ico"><Icon name="lucide:clock" width="20" height="20" /></span>
+          <div><strong>Horario</strong><span>Lun a Sáb · 8:00 a.m. – 6:00 p.m.</span></div>
+        </li>
+        <li>
+          <span class="contact__ico"><Icon name="lucide:map-pin" width="20" height="20" /></span>
+          <div><strong>Cobertura</strong><span>Fabricación a medida en toda Colombia</span></div>
+        </li>
+      </ul>
+    </div>
+
+    <form class="contact__form" id="contactForm" novalidate data-reveal>
+      <!-- Línea: Hogar / Empresa -->
+      <div class="field">
+        <label>¿Es para hogar o empresa? *</label>
+        <div class="segmented" role="radiogroup" aria-label="Línea de producto">
+          <label class="segmented__opt">
+            <input type="radio" name="linea" value="Línea Hogar" checked />
+            <span><Icon name="lucide:home" width="18" height="18" /> Hogar</span>
+          </label>
+          <label class="segmented__opt">
+            <input type="radio" name="linea" value="Línea Empresa" />
+            <span><Icon name="lucide:building-2" width="18" height="18" /> Empresa</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="nombre">Nombre completo *</label>
+          <div class="input-wrap">
+            <Icon class="input-wrap__ico" name="lucide:user" width="18" height="18" />
+            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
+          </div>
+        </div>
+        <div class="field">
+          <label for="telefono">Teléfono *</label>
+          <div class="input-wrap">
+            <Icon class="input-wrap__ico" name="lucide:phone" width="18" height="18" />
+            <input type="tel" id="telefono" name="telefono" placeholder="300 123 4567" required />
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label id="tipoLabel">Tipo de proyecto</label>
+        <div class="cs" data-select>
+          <button
+            type="button"
+            class="cs__trigger"
+            aria-haspopup="listbox"
+            aria-expanded="false"
+            aria-labelledby="tipoLabel"
+          >
+            <span class="cs__value" data-value>{tipos[0]}</span>
+            <Icon class="cs__chevron" name="lucide:chevron-down" width="18" height="18" />
+          </button>
+          <input type="hidden" name="tipo" id="tipo" value={tipos[0]} />
+          <ul class="cs__panel" role="listbox" tabindex="-1" aria-labelledby="tipoLabel">
+            {
+              tipos.map((t, i) => (
+                <li
+                  class="cs__option"
+                  role="option"
+                  data-val={t}
+                  tabindex="-1"
+                  aria-selected={i === 0 ? "true" : "false"}
+                >
+                  <span>{t}</span>
+                  <Icon class="cs__check" name="lucide:check" width="17" height="17" />
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="mensaje">Cuéntanos los detalles *</label>
+        <textarea id="mensaje" name="mensaje" rows="4" placeholder="Describe tu proyecto, medidas aproximadas, estilo..." required></textarea>
+      </div>
+
+      <button type="submit" class="btn btn--primary btn--block">
+        <Icon name="lucide:send" width="18" height="18" /> Enviar por WhatsApp
+      </button>
+
+      <p class="form-success" id="formSuccess" hidden>
+        <Icon name="lucide:circle-check-big" width="18" height="18" />
+        ¡Listo! Abrimos WhatsApp con tu mensaje. Si no se abrió, <a href={whatsappLink()} target="_blank" rel="noopener">escríbenos aquí</a>.
+      </p>
+
+      <p class="contact__note">
+        Al enviar, se abrirá WhatsApp con tu mensaje. También puedes
+        <a href={whatsappLink()} target="_blank" rel="noopener">escribirnos directamente</a>.
+      </p>
+    </form>
+  </div>
+</section>
+
+<script is:inline define:vars={{ cfg: clientConfig }}>
+  (function () {
+    const form = document.getElementById("contactForm");
+    if (!form) return;
+    const success = document.getElementById("formSuccess");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const nombre = form.nombre,
+        telefono = form.telefono,
+        tipo = form.tipo,
+        mensaje = form.mensaje,
+        linea = form.querySelector('input[name="linea"]:checked');
+
+      let ok = true;
+      [nombre, telefono, mensaje].forEach(function (field) {
+        const wrap = field.closest(".input-wrap") || field;
+        if (!field.value.trim()) {
+          field.classList.add("invalid");
+          wrap.classList.add("invalid");
+          ok = false;
+        } else {
+          field.classList.remove("invalid");
+          wrap.classList.remove("invalid");
+        }
+      });
+      if (!ok) {
+        (nombre.value.trim() ? telefono : nombre).focus();
+        return;
+      }
+
+      // Conversión Google Ads
+      if (window.gtag && cfg.adsId && cfg.adsConversionLabel) {
+        window.gtag("event", "conversion", {
+          send_to: cfg.adsId + "/" + cfg.adsConversionLabel,
+        });
+      }
+      if (window.dataLayer) {
+        window.dataLayer.push({ event: "generate_lead", form: "contacto_whatsapp" });
+      }
+
+      const texto =
+        "Hola Madeartes 👋, quiero cotizar un proyecto.\n\n" +
+        "*Línea:* " + (linea ? linea.value : "Hogar") + "\n" +
+        "*Nombre:* " + nombre.value.trim() + "\n" +
+        "*Teléfono:* " + telefono.value.trim() + "\n" +
+        "*Tipo:* " + tipo.value + "\n" +
+        "*Detalles:* " + mensaje.value.trim();
+
+      window.open("https://wa.me/" + cfg.whatsapp + "?text=" + encodeURIComponent(texto), "_blank");
+
+      if (success) {
+        success.hidden = false;
+        success.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }
+    });
+
+    form.querySelectorAll("input, textarea").forEach(function (el) {
+      el.addEventListener("input", function () {
+        el.classList.remove("invalid");
+        const wrap = el.closest(".input-wrap");
+        if (wrap) wrap.classList.remove("invalid");
+        if (success) success.hidden = true;
+      });
+    });
+  })();
+</script>
+
+<script>
+  // Dropdown personalizado (estilo shadcn) — sin look del navegador.
+  document.querySelectorAll<HTMLElement>("[data-select]").forEach((root) => {
+    const trigger = root.querySelector<HTMLButtonElement>(".cs__trigger");
+    const valueEl = root.querySelector<HTMLElement>("[data-value]");
+    const hidden = root.querySelector<HTMLInputElement>('input[type="hidden"]');
+    const options = Array.from(root.querySelectorAll<HTMLElement>(".cs__option"));
+    if (!trigger || !valueEl || !hidden) return;
+
+    let open = false;
+    let focusIdx = Math.max(0, options.findIndex((o) => o.getAttribute("aria-selected") === "true"));
+
+    const setOpen = (o: boolean) => {
+      open = o;
+      root.classList.toggle("open", o);
+      trigger.setAttribute("aria-expanded", String(o));
+      if (o) {
+        focusIdx = Math.max(0, options.findIndex((x) => x.getAttribute("aria-selected") === "true"));
+        highlight();
+      }
+    };
+
+    const highlight = () => {
+      options.forEach((o, i) => o.classList.toggle("focus", i === focusIdx));
+      options[focusIdx]?.scrollIntoView({ block: "nearest" });
+    };
+
+    const choose = (opt: HTMLElement) => {
+      options.forEach((o) => o.setAttribute("aria-selected", "false"));
+      opt.setAttribute("aria-selected", "true");
+      const val = opt.dataset.val || "";
+      valueEl.textContent = val;
+      hidden.value = val;
+      setOpen(false);
+      trigger.focus();
+    };
+
+    trigger.addEventListener("click", () => setOpen(!open));
+    options.forEach((opt, i) => {
+      opt.addEventListener("click", () => choose(opt));
+      opt.addEventListener("mousemove", () => { focusIdx = i; highlight(); });
+    });
+
+    trigger.addEventListener("keydown", (e) => {
+      if (["ArrowDown", "ArrowUp", "Enter", " "].includes(e.key)) {
+        e.preventDefault();
+        if (!open) { setOpen(true); return; }
+      }
+      if (!open) return;
+      if (e.key === "ArrowDown") { focusIdx = (focusIdx + 1) % options.length; highlight(); }
+      else if (e.key === "ArrowUp") { focusIdx = (focusIdx - 1 + options.length) % options.length; highlight(); }
+      else if (e.key === "Enter" || e.key === " ") { choose(options[focusIdx]); }
+      else if (e.key === "Escape") { setOpen(false); }
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!root.contains(e.target as Node)) setOpen(false);
+    });
+  });
+</script>

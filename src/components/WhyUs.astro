@@ -1,0 +1,34 @@
+---
+import { Icon } from "astro-icon/components";
+
+const reasons = [
+  { icon: "lucide:pencil-ruler", title: "Diseño a medida", text: "Cada proyecto se diseña según tu espacio, gustos y necesidades reales." },
+  { icon: "lucide:trees", title: "Madera de calidad", text: "Seleccionamos maderas nobles y materiales que resisten el paso del tiempo." },
+  { icon: "lucide:clock", title: "Entrega puntual", text: "Cumplimos los tiempos acordados con instalación profesional incluida." },
+  { icon: "lucide:shield-check", title: "Garantía real", text: "Respaldamos cada trabajo con garantía y acompañamiento postventa." },
+];
+---
+
+<section class="section" id="porque">
+  <div class="container">
+    <header class="section__head" data-reveal>
+      <span class="eyebrow">Por qué Madeartes</span>
+      <h2>Razones para elegirnos</h2>
+      <p>No vendemos muebles de catálogo: creamos piezas hechas para ti.</p>
+    </header>
+
+    <div class="reasons">
+      {
+        reasons.map((r, i) => (
+          <div class="reason" data-reveal style={`--d:${i * 80}ms`}>
+            <span class="reason__icon">
+              <Icon name={r.icon} width="28" height="28" />
+            </span>
+            <h3>{r.title}</h3>
+            <p>{r.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

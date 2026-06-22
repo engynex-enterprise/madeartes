@@ -1,0 +1,35 @@
+---
+import { Icon } from "astro-icon/components";
+
+const faqs = [
+  { q: "¿Hacen muebles totalmente a medida?", a: "Sí. Diseñamos y fabricamos cada pieza según las dimensiones de tu espacio y tus preferencias de estilo, color y materiales." },
+  { q: "¿Cuánto tarda un proyecto?", a: "Depende del alcance, pero la mayoría de proyectos se entregan entre 2 y 5 semanas. Te damos una fecha clara desde la cotización." },
+  { q: "¿Trabajan con empresas y locales comerciales?", a: "Claro. Amoblamos oficinas, restaurantes, hoteles y comercios con mobiliario corporativo a la medida de tu marca." },
+  { q: "¿La instalación está incluida?", a: "Sí. Nuestro equipo se encarga del transporte e instalación profesional, dejando tu espacio listo para usar." },
+  { q: "¿Cómo cotizo mi proyecto?", a: "Completa el formulario de contacto o escríbenos por WhatsApp. Te asesoramos sin costo y te enviamos una propuesta." },
+];
+---
+
+<section class="section" id="faq">
+  <div class="container faq">
+    <header class="section__head section__head--left" data-reveal>
+      <span class="eyebrow">Preguntas frecuentes</span>
+      <h2>Resolvemos tus dudas</h2>
+      <p>Y si te queda alguna, escríbenos por WhatsApp.</p>
+    </header>
+
+    <div class="faq__list" data-reveal>
+      {
+        faqs.map((f) => (
+          <details class="faq__item">
+            <summary>
+              {f.q}
+              <Icon class="faq__plus" name="lucide:plus" width="22" height="22" />
+            </summary>
+            <p>{f.a}</p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>

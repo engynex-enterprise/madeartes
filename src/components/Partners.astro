@@ -1,0 +1,27 @@
+---
+import { Icon } from "astro-icon/components";
+
+const items = [
+  { icon: "lucide:home", label: "Hogares" },
+  { icon: "lucide:building-2", label: "Oficinas" },
+  { icon: "lucide:utensils", label: "Restaurantes" },
+  { icon: "lucide:shopping-bag", label: "Comercios" },
+  { icon: "lucide:bed-double", label: "Hoteles" },
+];
+---
+
+<section class="partners">
+  <div class="container">
+    <p class="partners__title">Confían en nosotros hogares y empresas en todo el país</p>
+    <ul class="partners__logos">
+      {
+        items.map((i) => (
+          <li>
+            <Icon name={i.icon} width="20" height="20" />
+            {i.label}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

@@ -1,0 +1,19 @@
+{
+  "name": "madeartes",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Sitio web de Madeartes - muebles de madera a medida para hogar y empresa",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.2.1",
+    "@iconify-json/lucide": "^1.2.18",
+    "astro": "^5.1.1",
+    "astro-icon": "^1.1.5"
+  }
+}

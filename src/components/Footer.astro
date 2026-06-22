@@ -1,0 +1,43 @@
+---
+import Brand from "./Brand.astro";
+import { site, whatsappLink } from "../config/site";
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <Brand light={true} />
+      <p>Muebles de madera a medida para hogar y empresa. Diseño, fabricación e instalación con acabado artesanal.</p>
+    </div>
+
+    <div class="footer__col">
+      <h4>Servicios</h4>
+      <a href="#servicios">Cocinas integrales</a>
+      <a href="#servicios">Closets y vestidores</a>
+      <a href="#servicios">Comedores y mesas</a>
+      <a href="#servicios">Mobiliario corporativo</a>
+    </div>
+
+    <div class="footer__col">
+      <h4>Empresa</h4>
+      <a href="#proyectos">Proyectos</a>
+      <a href="#porque">Por qué nosotros</a>
+      <a href="#opiniones">Opiniones</a>
+      <a href="#faq">Preguntas frecuentes</a>
+    </div>
+
+    <div class="footer__col">
+      <h4>Contacto</h4>
+      <a href={whatsappLink()} target="_blank" rel="noopener">WhatsApp {site.whatsappPretty}</a>
+      <a href="#contacto">Cotizar proyecto</a>
+      <span>Lun a Sáb · 8:00 – 18:00</span>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <div class="container">
+      <span>© {year} Madeartes. Todos los derechos reservados.</span>
+      <span>Hecho con madera y dedicación 🪵</span>
+    </div>
+  </div>
+</footer>

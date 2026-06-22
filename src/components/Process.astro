@@ -1,0 +1,33 @@
+---
+import { Icon } from "astro-icon/components";
+
+const steps = [
+  { icon: "lucide:messages-square", title: "Asesoría", text: "Hablamos de tu idea, espacio y presupuesto. Resolvemos dudas sin costo." },
+  { icon: "lucide:pencil-ruler", title: "Diseño y cotización", text: "Tomamos medidas y te presentamos el diseño con una propuesta clara." },
+  { icon: "lucide:hammer", title: "Fabricación", text: "Construimos tu mueble en nuestro taller con maderas y acabados de calidad." },
+  { icon: "lucide:truck", title: "Instalación", text: "Llevamos e instalamos todo, dejando tu espacio listo para disfrutar." },
+];
+---
+
+<section class="section" id="proceso">
+  <div class="container">
+    <header class="section__head" data-reveal>
+      <span class="eyebrow">Cómo trabajamos</span>
+      <h2>De la idea al mueble en 4 pasos</h2>
+      <p>Un proceso claro y acompañado, sin sorpresas en el camino.</p>
+    </header>
+
+    <ol class="process">
+      {
+        steps.map((s, i) => (
+          <li class="process__step" data-reveal style={`--d:${i * 80}ms`}>
+            <span class="process__num">{i + 1}</span>
+            <span class="process__icon"><Icon name={s.icon} width="26" height="26" /></span>
+            <h3>{s.title}</h3>
+            <p>{s.text}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

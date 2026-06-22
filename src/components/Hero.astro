@@ -1,0 +1,124 @@
+---
+import { Icon } from "astro-icon/components";
+
+const slides = [
+  {
+    tag: "Línea Hogar",
+    title: "Muebles que dan vida a tu hogar",
+    text: "Cocinas, closets y comedores a medida con acabado artesanal, pensados para tu día a día.",
+    img: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1600&q=80",
+    primary: { href: "#contacto", label: "Cotiza tu proyecto" },
+    secondary: { href: "#servicios", label: "Ver servicios" },
+  },
+  {
+    tag: "Línea Empresa",
+    title: "Espacios que proyectan tu marca",
+    text: "Mobiliario corporativo para oficinas, restaurantes, hoteles y comercios. Diseño que comunica.",
+    img: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=80",
+    primary: { href: "#contacto", label: "Solicita asesoría" },
+    secondary: { href: "#proyectos", label: "Ver proyectos" },
+  },
+  {
+    tag: "Cocinas integrales",
+    title: "Tu cocina, hecha a tu medida",
+    text: "Optimizamos cada centímetro con diseño funcional, herrajes de calidad y acabados que perduran.",
+    img: "https://images.unsplash.com/photo-1556909212-d5b604d0c90d?auto=format&fit=crop&w=1600&q=80",
+    primary: { href: "#contacto", label: "Diseña tu cocina" },
+    secondary: { href: "#proceso", label: "Cómo trabajamos" },
+  },
+  {
+    tag: "Closets y vestidores",
+    title: "Orden y elegancia en cada rincón",
+    text: "Almacenamiento inteligente con diseño a la medida de tu espacio y tu estilo de vida.",
+    img: "https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=1600&q=80",
+    primary: { href: "#contacto", label: "Cotiza tu closet" },
+    secondary: { href: "#proyectos", label: "Ver proyectos" },
+  },
+];
+---
+
+<section class="hero-slider" id="inicio" data-hero-slider aria-label="Destacados">
+  <div class="hero-slider__track">
+    {
+      slides.map((s, i) => (
+        <article
+          class={`slide${i === 0 ? " is-active" : ""}`}
+          data-slide
+          style={`background-image:url('${s.img}')`}
+          aria-hidden={i === 0 ? "false" : "true"}
+        >
+          <span class="slide__overlay" />
+          <div class="container slide__inner">
+            <span class="badge badge--light">
+              <Icon name="lucide:sparkles" width="15" height="15" />
+              {s.tag}
+            </span>
+            <h1 class="slide__title">{s.title}</h1>
+            <p class="slide__text">{s.text}</p>
+            <div class="slide__actions">
+              <a href={s.primary.href} class="btn btn--primary">{s.primary.label}</a>
+              <a href={s.secondary.href} class="btn btn--glass">{s.secondary.label} →</a>
+            </div>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+
+  <button class="hero-slider__arrow prev" data-prev aria-label="Anterior">
+    <Icon name="lucide:chevron-left" width="26" height="26" />
+  </button>
+  <button class="hero-slider__arrow next" data-next aria-label="Siguiente">
+    <Icon name="lucide:chevron-right" width="26" height="26" />
+  </button>
+
+  <div class="hero-slider__dots" data-dots>
+    {
+      slides.map((s, i) => (
+        <button
+          class={`dot${i === 0 ? " is-active" : ""}`}
+          data-dot
+          aria-label={`Ir a ${s.tag}`}
+        />
+      ))
+    }
+  </div>
+</section>
+
+<script>
+  const root = document.querySelector<HTMLElement>("[data-hero-slider]");
+  if (root) {
+    const slides = Array.from(root.querySelectorAll<HTMLElement>("[data-slide]"));
+    const dots = Array.from(root.querySelectorAll<HTMLElement>("[data-dot]"));
+    const prev = root.querySelector<HTMLButtonElement>("[data-prev]");
+    const next = root.querySelector<HTMLButtonElement>("[data-next]");
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let idx = 0;
+    let timer: number | undefined;
+
+    const go = (n: number) => {
+      slides[idx].classList.remove("is-active");
+      slides[idx].setAttribute("aria-hidden", "true");
+      dots[idx]?.classList.remove("is-active");
+      idx = (n + slides.length) % slides.length;
+      slides[idx].classList.add("is-active");
+      slides[idx].setAttribute("aria-hidden", "false");
+      dots[idx]?.classList.add("is-active");
+    };
+
+    const start = () => {
+      if (reduce) return;
+      stop();
+      timer = window.setInterval(() => go(idx + 1), 6000);
+    };
+    const stop = () => timer && window.clearInterval(timer);
+
+    next?.addEventListener("click", () => { go(idx + 1); start(); });
+    prev?.addEventListener("click", () => { go(idx - 1); start(); });
+    dots.forEach((d, i) => d.addEventListener("click", () => { go(i); start(); }));
+
+    root.addEventListener("mouseenter", stop);
+    root.addEventListener("mouseleave", start);
+    start();
+  }
+</script>

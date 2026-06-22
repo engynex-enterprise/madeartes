@@ -1,0 +1,50 @@
+---
+import Brand from "./Brand.astro";
+
+const links = [
+  { href: "#servicios", label: "Servicios" },
+  { href: "#proyectos", label: "Proyectos" },
+  { href: "#proceso", label: "Proceso" },
+  { href: "#porque", label: "Por qué nosotros" },
+  { href: "#opiniones", label: "Opiniones" },
+  { href: "#faq", label: "Preguntas" },
+];
+---
+
+<header class="nav" id="top">
+  <div class="container nav__inner">
+    <Brand />
+
+    <nav class="nav__links" aria-label="Menú principal">
+      {links.map((l) => <a href={l.href}>{l.label}</a>)}
+    </nav>
+
+    <a href="#contacto" class="btn btn--dark nav__cta">Contáctanos</a>
+
+    <button class="nav__toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <div class="nav__mobile" id="navMobile">
+    {links.map((l) => <a href={l.href}>{l.label}</a>)}
+    <a href="#contacto" class="btn btn--dark">Contáctanos</a>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById("navToggle");
+  const mobile = document.getElementById("navMobile");
+  if (toggle && mobile) {
+    toggle.addEventListener("click", () => {
+      const open = mobile.classList.toggle("open");
+      toggle.setAttribute("aria-expanded", String(open));
+    });
+    mobile.querySelectorAll("a").forEach((a) =>
+      a.addEventListener("click", () => {
+        mobile.classList.remove("open");
+        toggle.setAttribute("aria-expanded", "false");
+      })
+    );
+  }
+</script>
