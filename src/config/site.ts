@@ -24,6 +24,19 @@ export const google = {
   mapsApiKey: env.PUBLIC_GOOGLE_MAPS_API_KEY || "",
 };
 
+// Asistente de IA (chat).
+export const ai = {
+  endpoint: env.PUBLIC_AI_CHAT_ENDPOINT || "",
+};
+
+// Realidad aumentada (modelos 3D por defecto).
+export const ar = {
+  glb:
+    env.PUBLIC_AR_MODEL_GLB ||
+    "https://modelviewer.dev/shared-assets/models/glTF-Sample-Models/2.0/SheenChair/glTF-Binary/SheenChair.glb",
+  usdz: env.PUBLIC_AR_MODEL_USDZ || "",
+};
+
 // Mensaje de conversión de WhatsApp con el número internacional listo.
 export const whatsappLink = (text?: string) =>
   `https://wa.me/${site.whatsapp}${text ? `?text=${encodeURIComponent(text)}` : ""}`;

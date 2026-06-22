@@ -1,0 +1,168 @@
+---
+import { Icon } from "astro-icon/components";
+import { ai, site, whatsappLink } from "../config/site";
+
+const clientConfig = {
+  endpoint: ai.endpoint,
+  whatsapp: site.whatsapp,
+};
+---
+
+<!-- Botón flotante para abrir el chat -->
+<button class="chat-fab" id="chatFab" aria-label="Abrir asistente">
+  <Icon name="lucide:message-circle-more" width="26" height="26" />
+  <span class="chat-fab__dot"></span>
+</button>
+
+<!-- Ventana del chat -->
+<section class="chat" id="chatWindow" aria-hidden="true" aria-label="Asistente Madeartes">
+  <header class="chat__head">
+    <div class="chat__head-info">
+      <span class="chat__avatar"><Icon name="lucide:bot" width="22" height="22" /></span>
+      <div>
+        <strong>Asistente Madeartes</strong>
+        <span class="chat__status">En línea · responde al instante</span>
+      </div>
+    </div>
+    <button class="chat__close" id="chatClose" aria-label="Cerrar chat">
+      <Icon name="lucide:x" width="20" height="20" />
+    </button>
+  </header>
+
+  <div class="chat__body" id="chatBody">
+    <div class="chat__msg chat__msg--bot">
+      ¡Hola! 👋 Soy el asistente de Madeartes. Puedo ayudarte con muebles a medida para
+      hogar o empresa, tiempos, materiales y cotizaciones. ¿Qué tienes en mente?
+    </div>
+    <div class="chat__chips" id="chatChips">
+      <button class="chat__chip">Quiero una cocina integral</button>
+      <button class="chat__chip">¿Cuánto tarda un proyecto?</button>
+      <button class="chat__chip">Muebles para mi empresa</button>
+    </div>
+  </div>
+
+  <form class="chat__input" id="chatForm">
+    <input type="text" id="chatText" placeholder="Escribe tu mensaje..." autocomplete="off" />
+    <button type="submit" aria-label="Enviar"><Icon name="lucide:send-horizontal" width="20" height="20" /></button>
+  </form>
+  <a href={whatsappLink("Hola Madeartes, quiero hablar con un asesor.")} target="_blank" rel="noopener" class="chat__handoff">
+    <Icon name="lucide:message-circle" width="16" height="16" /> Hablar con un asesor por WhatsApp
+  </a>
+</section>
+
+<script is:inline define:vars={{ cfg: clientConfig }}>
+  (function () {
+    const fab = document.getElementById("chatFab");
+    const win = document.getElementById("chatWindow");
+    const closeBtn = document.getElementById("chatClose");
+    const body = document.getElementById("chatBody");
+    const form = document.getElementById("chatForm");
+    const input = document.getElementById("chatText");
+    if (!fab || !win || !body || !form || !input) return;
+
+    // Base de conocimiento para el modo guiado (sin backend).
+    const KB = [
+      { k: ["hola", "buenas", "buenos"], a: "¡Hola! ¿Te gustaría cotizar un mueble para tu hogar o para tu empresa?" },
+      { k: ["cocina"], a: "Diseñamos cocinas integrales a medida, optimizando cada centímetro con herrajes de calidad. ¿Quieres que un asesor te prepare una cotización? Puedo pasarte a WhatsApp." },
+      { k: ["closet", "vestier", "vestidor"], a: "Hacemos closets y vestidores a medida con acabados finos y mucho almacenamiento. Cuéntame las medidas aproximadas y te orientamos." },
+      { k: ["empresa", "oficina", "corporativo", "negocio", "local", "restaurante", "hotel"], a: "Sí, amoblamos oficinas, restaurantes, hoteles y comercios con mobiliario corporativo a la medida de tu marca. ¿Quieres agendar una asesoría?" },
+      { k: ["tiempo", "tarda", "demora", "cuanto", "cuánto", "entrega"], a: "La mayoría de proyectos se entregan entre 2 y 5 semanas según el alcance. Te damos una fecha clara desde la cotización." },
+      { k: ["precio", "costo", "vale", "cotiza", "cotización", "presupuesto"], a: "El precio depende del diseño, materiales y medidas. Lo mejor es una cotización sin costo: ¿te paso con un asesor por WhatsApp?" },
+      { k: ["material", "madera", "calidad"], a: "Trabajamos maderas nobles y materiales que resisten el paso del tiempo, con garantía en cada proyecto." },
+      { k: ["instala", "instalación", "envio", "envío", "transporte"], a: "Sí, nos encargamos del transporte e instalación profesional, dejando tu espacio listo para usar." },
+      { k: ["garantia", "garantía"], a: "Todos nuestros trabajos cuentan con garantía y acompañamiento postventa." },
+      { k: ["ubicacion", "ubicación", "donde", "dónde", "ciudad"], a: "Fabricamos a medida y atendemos en toda Colombia. ¿En qué ciudad estás?" },
+      { k: ["gracias"], a: "¡Con gusto! Si quieres, te conecto con un asesor por WhatsApp para avanzar con tu proyecto. 🙌" },
+    ];
+
+    const history = [];
+    let open = false;
+
+    const toggle = (state) => {
+      open = state;
+      win.classList.toggle("open", open);
+      win.setAttribute("aria-hidden", String(!open));
+      fab.classList.toggle("hidden", open);
+      if (open) setTimeout(() => input.focus(), 150);
+    };
+    fab.addEventListener("click", () => toggle(true));
+    closeBtn?.addEventListener("click", () => toggle(false));
+
+    const scrollDown = () => { body.scrollTop = body.scrollHeight; };
+
+    const addMsg = (text, who) => {
+      const el = document.createElement("div");
+      el.className = "chat__msg chat__msg--" + who;
+      el.textContent = text;
+      body.appendChild(el);
+      scrollDown();
+      return el;
+    };
+
+    const typing = () => {
+      const el = document.createElement("div");
+      el.className = "chat__msg chat__msg--bot chat__typing";
+      el.innerHTML = "<span></span><span></span><span></span>";
+      body.appendChild(el);
+      scrollDown();
+      return el;
+    };
+
+    const guidedReply = (text) => {
+      const t = text.toLowerCase();
+      const hit = KB.find((e) => e.k.some((kw) => t.includes(kw)));
+      return hit ? hit.a
+        : "Buena pregunta. Para darte la mejor respuesta, ¿te conecto con un asesor por WhatsApp? También puedes contarme si es para hogar o empresa.";
+    };
+
+    async function respond(text) {
+      const t = typing();
+      try {
+        if (cfg.endpoint) {
+          // Modo IA: envía la conversación al backend (Claude).
+          const res = await fetch(cfg.endpoint, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ messages: history }),
+          });
+          if (!res.ok) throw new Error("bad response");
+          const data = await res.json();
+          t.remove();
+          const reply = data.reply || guidedReply(text);
+          history.push({ role: "assistant", content: reply });
+          addMsg(reply, "bot");
+        } else {
+          // Modo guiado (sin backend).
+          await new Promise((r) => setTimeout(r, 500));
+          t.remove();
+          const reply = guidedReply(text);
+          history.push({ role: "assistant", content: reply });
+          addMsg(reply, "bot");
+        }
+      } catch (e) {
+        t.remove();
+        addMsg("Ups, tuve un problema para responder. Escríbenos por WhatsApp y te ayudamos al instante. 🙌", "bot");
+      }
+    }
+
+    const send = (text) => {
+      const clean = text.trim();
+      if (!clean) return;
+      addMsg(clean, "user");
+      history.push({ role: "user", content: clean });
+      input.value = "";
+      const chips = document.getElementById("chatChips");
+      if (chips) chips.remove();
+      respond(clean);
+    };
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      send(input.value);
+    });
+
+    document.querySelectorAll(".chat__chip").forEach((c) =>
+      c.addEventListener("click", () => send(c.textContent || ""))
+    );
+  })();
+</script>

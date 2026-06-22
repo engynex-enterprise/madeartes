@@ -1,9 +1,18 @@
 ---
+const filters = [
+  { key: "all", label: "Todos" },
+  { key: "hogar", label: "Hogar" },
+  { key: "empresa", label: "Empresa" },
+  { key: "cocina", label: "Cocinas" },
+];
+
 const projects = [
-  { img: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=700&q=80", alt: "Proyecto de muebles de madera para dormitorio" },
-  { img: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=700&q=80", alt: "Sala con muebles de madera" },
-  { img: "https://images.unsplash.com/photo-1567016432779-094069958ea5?auto=format&fit=crop&w=700&q=80", alt: "Mueble de madera para oficina" },
-  { img: "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=700&q=80", alt: "Detalle de carpintería en madera" },
+  { img: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80", alt: "Muebles de madera para dormitorio", cat: "hogar", title: "Dormitorio principal", place: "Bogotá" },
+  { img: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=800&q=80", alt: "Oficina con muebles de madera", cat: "empresa", title: "Oficina corporativa", place: "Medellín" },
+  { img: "https://images.unsplash.com/photo-1556909212-d5b604d0c90d?auto=format&fit=crop&w=800&q=80", alt: "Cocina integral en madera", cat: "cocina", title: "Cocina integral", place: "Cali" },
+  { img: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80", alt: "Sala con muebles de madera", cat: "hogar", title: "Sala de estar", place: "Bogotá" },
+  { img: "https://images.unsplash.com/photo-1567016432779-094069958ea5?auto=format&fit=crop&w=800&q=80", alt: "Recepción de madera", cat: "empresa", title: "Recepción & lobby", place: "Barranquilla" },
+  { img: "https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=800&q=80", alt: "Cocina abierta de madera", cat: "cocina", title: "Cocina abierta", place: "Medellín" },
 ];
 ---
 
@@ -12,17 +21,47 @@ const projects = [
     <header class="section__head" data-reveal>
       <span class="eyebrow">Proyectos</span>
       <h2>Trabajo que habla por sí solo</h2>
-      <p>Una selección de piezas fabricadas e instaladas por nuestro equipo.</p>
+      <p>Filtra por tipo y explora algunas piezas que fabricamos e instalamos.</p>
     </header>
 
-    <div class="gallery">
+    <div class="filters" data-reveal role="tablist" aria-label="Filtrar proyectos">
+      {
+        filters.map((f, i) => (
+          <button class={`filter${i === 0 ? " is-active" : ""}`} data-filter={f.key}>
+            {f.label}
+          </button>
+        ))
+      }
+    </div>
+
+    <div class="gallery" id="gallery">
       {
         projects.map((p, i) => (
-          <figure data-reveal style={`--d:${i * 70}ms`}>
-            <img src={p.img} alt={p.alt} loading="lazy" width="700" height="933" />
+          <figure class="gallery__item" data-cat={p.cat} data-reveal style={`--d:${i * 60}ms`}>
+            <img src={p.img} alt={p.alt} loading="lazy" width="800" height="1000" />
+            <figcaption>
+              <strong>{p.title}</strong>
+              <span>{p.place}</span>
+            </figcaption>
           </figure>
         ))
       }
     </div>
   </div>
 </section>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>(".filter");
+  const items = document.querySelectorAll<HTMLElement>(".gallery__item");
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      buttons.forEach((b) => b.classList.remove("is-active"));
+      btn.classList.add("is-active");
+      const key = btn.dataset.filter;
+      items.forEach((item) => {
+        const show = key === "all" || item.dataset.cat === key;
+        item.classList.toggle("hide", !show);
+      });
+    });
+  });
+</script>

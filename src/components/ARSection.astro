@@ -1,0 +1,52 @@
+---
+import { Icon } from "astro-icon/components";
+import { ar } from "../config/site";
+---
+
+<section class="section ar" id="ar">
+  <div class="container ar__inner">
+    <div class="ar__copy" data-reveal>
+      <span class="eyebrow">Realidad aumentada</span>
+      <h2>Ve el mueble en tu espacio antes de comprarlo</h2>
+      <p>
+        Gira el modelo en 3D y, desde tu celular, pulsa <strong>“Ver en tu espacio”</strong>
+        para colocar el mueble en tu sala, cocina u oficina usando la cámara. Decide con total
+        confianza cómo se verá en tu hogar o empresa.
+      </p>
+      <ul class="ar__points">
+        <li><Icon name="lucide:rotate-3d" width="20" height="20" /> Modelo 3D interactivo</li>
+        <li><Icon name="lucide:smartphone" width="20" height="20" /> AR en tu celular (iOS y Android)</li>
+        <li><Icon name="lucide:ruler" width="20" height="20" /> Comprueba tamaño y proporción real</li>
+      </ul>
+      <a href="#contacto" class="btn btn--primary">Quiero mi mueble a medida</a>
+    </div>
+
+    <div class="ar__viewer" data-reveal>
+      <model-viewer
+        src={ar.glb}
+        ios-src={ar.usdz || undefined}
+        alt="Modelo 3D de un mueble de madera para ver en realidad aumentada"
+        camera-controls
+        auto-rotate
+        ar
+        ar-modes="webxr scene-viewer quick-look"
+        shadow-intensity="1"
+        exposure="1.1"
+        loading="eager"
+      >
+        <button slot="ar-button" class="btn btn--primary ar__btn">
+          <span>Ver en tu espacio</span>
+        </button>
+        <div class="ar__poster" slot="poster">Cargando modelo 3D…</div>
+      </model-viewer>
+      <p class="ar__hint">Arrastra para girar · pellizca para acercar</p>
+    </div>
+  </div>
+</section>
+
+<!-- model-viewer (Google) — se carga solo en esta página -->
+<script
+  type="module"
+  src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"
+  is:inline
+></script>

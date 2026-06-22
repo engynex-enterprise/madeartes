@@ -29,10 +29,27 @@ madeartes/
     ├── styles/global.css   # paleta tonos madera/nogal
     ├── pages/index.astro   # ensambla la página
     └── components/
-        ├── Nav, Hero, Partners, Services, Projects, WhyUs,
-        │   Reviews, Faq, Cta, Contact, Footer, WhatsAppFloat, Brand
+        ├── Nav, Hero(slider), Partners, Services(bento), Projects(filtrable),
+        │   Process(timeline), ARSection, WhyUs, Reviews, Faq, Cta, Contact,
+        │   Footer, WhatsAppFloat, AIChat, Interactions, Brand
         └── analytics/      # GoogleTagManager, GoogleGtag (GA4 + Ads)
+
+functions/chat.example.ts   # función serverless de ejemplo (chat con Claude)
 ```
+
+## Asistente de IA (chat)
+
+Chat flotante con dos modos:
+- **Guiado (por defecto):** base de conocimiento local (FAQ) + derivación a WhatsApp. Sin backend.
+- **IA (opcional):** define `PUBLIC_AI_CHAT_ENDPOINT` y el chat conversa con **Claude**
+  (`claude-opus-4-8`) vía [functions/chat.example.ts](functions/chat.example.ts).
+  La `ANTHROPIC_API_KEY` vive **solo en el servidor**, nunca en el frontend.
+
+## Realidad Aumentada
+
+La sección "Ver en 3D" usa [`<model-viewer>`](https://modelviewer.dev) (de Google): gira el
+mueble en 3D y, desde el celular, "Ver en tu espacio" lo coloca con la cámara (iOS/Android).
+Reemplaza los modelos con `PUBLIC_AR_MODEL_GLB` (Android/3D) y `PUBLIC_AR_MODEL_USDZ` (iOS).
 
 ## Configuración de Google y WhatsApp (`.env`)
 
