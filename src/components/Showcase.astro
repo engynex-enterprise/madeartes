@@ -1,0 +1,56 @@
+---
+import { Icon } from "astro-icon/components";
+
+const rows = [
+  {
+    eyebrow: "Artesanía",
+    title: "Madera que perdura, acabados que enamoran",
+    text: "Seleccionamos maderas nobles y trabajamos cada pieza con técnicas de carpintería fina. El resultado: muebles sólidos, con textura y carácter, hechos para durar generaciones.",
+    points: ["Maderas seleccionadas a mano", "Herrajes y acabados de larga vida", "Control de calidad en cada etapa"],
+    img: "https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=1000&q=80",
+    alt: "Detalle de carpintería trabajando madera",
+    badge: { num: "100%", label: "a medida" },
+    rev: false,
+  },
+  {
+    eyebrow: "Diseño a medida",
+    title: "Pensado para tu espacio y tu forma de vivir",
+    text: "No partimos de un catálogo: partimos de ti. Tomamos medidas reales, escuchamos tu estilo y diseñamos cada mueble para que aproveche el espacio y se integre con tu hogar o tu marca.",
+    points: ["Diseño personalizado pieza por pieza", "Optimización real del espacio", "Visualización en 3D antes de fabricar"],
+    img: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1000&q=80",
+    alt: "Sala con muebles de madera a medida",
+    badge: null,
+    rev: true,
+  },
+];
+---
+
+<section class="section section--alt" id="artesania">
+  <div class="container">
+    {
+      rows.map((r) => (
+        <div class={`showcase__row${r.rev ? " showcase__row--rev" : ""}`}>
+          <div class="showcase__media" data-reveal>
+            <img src={r.img} alt={r.alt} loading="lazy" width="1000" height="750" />
+            {r.badge && (
+              <div class="showcase__badge">
+                <strong>{r.badge.num}</strong>
+                <span>{r.badge.label}</span>
+              </div>
+            )}
+          </div>
+          <div class="showcase__text" data-reveal>
+            <span class="eyebrow">{r.eyebrow}</span>
+            <h3>{r.title}</h3>
+            <p>{r.text}</p>
+            <ul class="showcase__list">
+              {r.points.map((p) => (
+                <li><Icon name="lucide:check" width="18" height="18" /> {p}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>

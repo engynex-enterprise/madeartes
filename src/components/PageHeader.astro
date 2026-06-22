@@ -4,11 +4,15 @@ interface Props {
   title: string;
   text?: string;
   current: string;
+  image?: string;
 }
-const { eyebrow, title, text, current } = Astro.props;
+const { eyebrow, title, text, current, image } = Astro.props;
 ---
 
-<section class="page-header">
+<section
+  class={`page-header${image ? " page-header--image" : ""}`}
+  style={image ? `background-image:url('${image}')` : undefined}
+>
   <span class="page-header__glow"></span>
   <div class="veil veil--lines"></div>
   <div class="container page-header__inner">
