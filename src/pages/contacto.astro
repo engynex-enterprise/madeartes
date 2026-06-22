@@ -1,0 +1,20 @@
+---
+import Layout from "../layouts/Layout.astro";
+import PageHeader from "../components/PageHeader.astro";
+import Contact from "../components/Contact.astro";
+import Faq from "../components/Faq.astro";
+---
+
+<Layout
+  title="Contacto | Madeartes — Cotiza tu proyecto"
+  description="Cuéntanos tu proyecto y recibe una cotización sin compromiso. Te respondemos al instante por WhatsApp al 315 437 7743."
+>
+  <PageHeader
+    eyebrow="Contáctanos"
+    title="Hablemos de tu proyecto"
+    text="Completa el formulario o escríbenos por WhatsApp. Te asesoramos sin costo y te enviamos una propuesta a la medida."
+    current="Contacto"
+  />
+  <Contact />
+  <Faq />
+</Layout>

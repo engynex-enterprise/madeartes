@@ -1,0 +1,111 @@
+---
+import Layout from "../layouts/Layout.astro";
+import PageHeader from "../components/PageHeader.astro";
+import LegalNav from "../components/LegalNav.astro";
+import { site } from "../config/site";
+---
+
+<Layout
+  title="Términos y condiciones | Madeartes"
+  description="Términos y condiciones de uso del sitio web y de los servicios de fabricación de muebles a medida de Madeartes."
+>
+  <PageHeader eyebrow="Legal" title="Términos y condiciones" current="Términos" />
+
+  <section class="section legal">
+    <div class="container legal__wrap">
+      <span class="legal__updated">Última actualización: 21 de junio de 2026</span>
+
+      <p class="legal__note">
+        <strong>Nota:</strong> Este documento es una plantilla base. Antes de publicar,
+        reemplaza los datos entre corchetes (razón social, NIT, dirección y correo) por
+        la información legal real de la empresa y valídalo con un abogado.
+      </p>
+
+      <p>
+        Los presentes Términos y Condiciones regulan el acceso y uso del sitio web
+        <strong>{site.url}</strong> y la contratación de los productos y servicios de
+        <strong>Madeartes</strong> [Razón social S.A.S.], identificada con NIT [NIT],
+        con domicilio en [Dirección], Colombia (en adelante, “Madeartes”). Al navegar o
+        contratar, el usuario acepta estos términos.
+      </p>
+
+      <h2>1. Objeto</h2>
+      <p>
+        Madeartes diseña, fabrica e instala muebles de madera a medida para hogar y
+        empresa (cocinas, closets, comedores, mobiliario corporativo, entre otros), así
+        como productos de catálogo, según la disponibilidad vigente.
+      </p>
+
+      <h2>2. Cotizaciones y pedidos</h2>
+      <ul>
+        <li>Las cotizaciones se entregan sin costo y tienen una validez de [15] días calendario.</li>
+        <li>El pedido se confirma con la aceptación de la cotización y el pago del anticipo acordado.</li>
+        <li>Las medidas, materiales, acabados y tiempos se especifican por escrito en cada proyecto.</li>
+        <li>Cualquier cambio solicitado después de iniciada la fabricación puede afectar el precio y los tiempos de entrega.</li>
+      </ul>
+
+      <h2>3. Precios y pagos</h2>
+      <p>
+        Los precios se expresan en pesos colombianos (COP) e incluyen los impuestos
+        aplicables salvo que se indique lo contrario. Las condiciones de pago (anticipo y
+        saldo) se establecen en la cotización. La fabricación inicia una vez confirmado el
+        anticipo.
+      </p>
+
+      <h2>4. Tiempos de entrega e instalación</h2>
+      <p>
+        Los tiempos estimados (habitualmente de 2 a 5 semanas) dependen del alcance del
+        proyecto y se confirman en la cotización. La instalación se coordina con el cliente
+        y requiere que el espacio se encuentre listo y con acceso adecuado.
+      </p>
+
+      <h2>5. Garantía</h2>
+      <p>
+        Nuestros productos cuentan con garantía conforme a la Ley 1480 de 2011 (Estatuto
+        del Consumidor). La garantía cubre defectos de fabricación y no aplica por uso
+        indebido, humedad excesiva, modificaciones por terceros o desgaste normal.
+      </p>
+
+      <h2>6. Derecho de retracto</h2>
+      <p>
+        Por tratarse de bienes confeccionados a la medida y conforme a las
+        especificaciones del consumidor, no aplica el derecho de retracto sobre productos
+        personalizados, salvo lo dispuesto por la ley.
+      </p>
+
+      <h2>7. Propiedad intelectual</h2>
+      <p>
+        Los diseños, imágenes, marca, textos y contenidos del sitio son propiedad de
+        Madeartes o se usan con autorización. Queda prohibida su reproducción sin permiso.
+      </p>
+
+      <h2>8. Responsabilidad</h2>
+      <p>
+        Madeartes no se hace responsable por daños derivados del uso inadecuado de los
+        muebles o de información proporcionada de forma incorrecta por el cliente (por
+        ejemplo, medidas erróneas suministradas por el usuario).
+      </p>
+
+      <h2>9. Asistente virtual y canales de contacto</h2>
+      <p>
+        El sitio ofrece un asistente virtual y atención por WhatsApp ({site.whatsappPretty})
+        con fines informativos. Las respuestas automáticas no constituyen una oferta
+        comercial vinculante; toda contratación se formaliza mediante cotización aceptada.
+      </p>
+
+      <h2>10. Ley aplicable y jurisdicción</h2>
+      <p>
+        Estos términos se rigen por las leyes de la República de Colombia. Cualquier
+        controversia se someterá a los jueces competentes del domicilio de Madeartes.
+      </p>
+
+      <h2>11. Contacto</h2>
+      <p>
+        Para dudas sobre estos términos, escríbenos a [correo@madeartes.com] o al WhatsApp
+        {site.whatsappPretty}.
+      </p>
+
+      <LegalNav current="/terminos" />
+    </div>
+  </section>
+</Layout>

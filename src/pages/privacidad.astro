@@ -1,0 +1,79 @@
+---
+import Layout from "../layouts/Layout.astro";
+import PageHeader from "../components/PageHeader.astro";
+import LegalNav from "../components/LegalNav.astro";
+import { site } from "../config/site";
+---
+
+<Layout
+  title="Política de privacidad | Madeartes"
+  description="Cómo Madeartes recolecta, usa y protege los datos personales de quienes visitan el sitio o solicitan una cotización."
+>
+  <PageHeader eyebrow="Legal" title="Política de privacidad" current="Privacidad" />
+
+  <section class="section legal">
+    <div class="container legal__wrap">
+      <span class="legal__updated">Última actualización: 21 de junio de 2026</span>
+
+      <p class="legal__note">
+        <strong>Nota:</strong> Reemplaza los datos entre corchetes por la información legal
+        real de la empresa antes de publicar.
+      </p>
+
+      <p>
+        En <strong>Madeartes</strong> [Razón social S.A.S.], NIT [NIT], respetamos tu
+        privacidad. Esta política explica qué datos recopilamos a través de
+        <strong>{site.url}</strong> y cómo los tratamos, en cumplimiento de la Ley 1581 de
+        2012 y el Decreto 1377 de 2013.
+      </p>
+
+      <h2>1. Datos que recopilamos</h2>
+      <ul>
+        <li><strong>Datos de contacto:</strong> nombre, teléfono y los detalles que nos compartes en el formulario o el chat.</li>
+        <li><strong>Datos de navegación:</strong> páginas visitadas, dispositivo y datos analíticos (ver <a href="/cookies">Política de cookies</a>).</li>
+      </ul>
+
+      <h2>2. Finalidades</h2>
+      <ul>
+        <li>Responder solicitudes, preparar cotizaciones y prestar nuestros servicios.</li>
+        <li>Coordinar la fabricación, entrega e instalación de los muebles.</li>
+        <li>Enviar información comercial sobre nuestros productos (solo con tu autorización).</li>
+        <li>Mejorar el sitio y medir su rendimiento mediante herramientas como Google Analytics.</li>
+      </ul>
+
+      <h2>3. WhatsApp y herramientas de terceros</h2>
+      <p>
+        El formulario de contacto puede abrir WhatsApp para continuar la conversación; en
+        ese caso aplican también las políticas de Meta. Usamos servicios de Google
+        (Analytics, Tag Manager, Ads) que pueden tratar datos según sus propias políticas.
+      </p>
+
+      <h2>4. Conservación</h2>
+      <p>
+        Conservamos los datos durante el tiempo necesario para cumplir las finalidades y
+        las obligaciones legales y contractuales aplicables.
+      </p>
+
+      <h2>5. Tus derechos</h2>
+      <p>
+        Puedes conocer, actualizar, rectificar o solicitar la supresión de tus datos, así
+        como revocar la autorización. Consulta el detalle y el procedimiento en nuestra
+        <a href="/tratamiento-datos">Política de Tratamiento de Datos</a>.
+      </p>
+
+      <h2>6. Seguridad</h2>
+      <p>
+        Aplicamos medidas razonables para proteger la información frente a accesos no
+        autorizados, pérdida o alteración.
+      </p>
+
+      <h2>7. Contacto</h2>
+      <p>
+        Para ejercer tus derechos o resolver dudas, escríbenos a [correo@madeartes.com] o
+        al WhatsApp {site.whatsappPretty}.
+      </p>
+
+      <LegalNav current="/privacidad" />
+    </div>
+  </section>
+</Layout>

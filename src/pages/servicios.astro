@@ -1,0 +1,26 @@
+---
+import Layout from "../layouts/Layout.astro";
+import PageHeader from "../components/PageHeader.astro";
+import Services from "../components/Services.astro";
+import BusinessLines from "../components/BusinessLines.astro";
+import ARSection from "../components/ARSection.astro";
+import Faq from "../components/Faq.astro";
+import Cta from "../components/Cta.astro";
+---
+
+<Layout
+  title="Servicios | Madeartes — Muebles de madera a medida"
+  description="Cocinas integrales, closets, comedores y mobiliario corporativo a medida. Diseño, fabricación e instalación con acabado artesanal y realidad aumentada."
+>
+  <PageHeader
+    eyebrow="Nuestros servicios"
+    title="Muebles a medida para cada espacio"
+    text="Diseñamos, fabricamos e instalamos mobiliario en madera para hogar y empresa, con la opción de verlo en tu espacio con realidad aumentada."
+    current="Servicios"
+  />
+  <Services />
+  <BusinessLines alt={true} />
+  <ARSection />
+  <Faq />
+  <Cta />
+</Layout>

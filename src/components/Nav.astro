@@ -2,14 +2,17 @@
 import Brand from "./Brand.astro";
 
 const links = [
-  { href: "#servicios", label: "Servicios" },
-  { href: "#proyectos", label: "Proyectos" },
-  { href: "#proceso", label: "Proceso" },
-  { href: "#ar", label: "Ver en 3D" },
-  { href: "#porque", label: "Por qué" },
-  { href: "#opiniones", label: "Opiniones" },
-  { href: "#faq", label: "Preguntas" },
+  { href: "/", label: "Inicio" },
+  { href: "/servicios", label: "Servicios" },
+  { href: "/proyectos", label: "Proyectos" },
+  { href: "/nosotros", label: "Nosotros" },
+  { href: "/contacto", label: "Contacto" },
 ];
+
+// Ruta actual (sin slash final) para marcar el enlace activo.
+const path = Astro.url.pathname.replace(/\/$/, "") || "/";
+const isActive = (href: string) =>
+  href === "/" ? path === "/" : path === href || path.startsWith(href + "/");
 ---
 
 <header class="nav" id="top">
@@ -17,10 +20,10 @@ const links = [
     <Brand />
 
     <nav class="nav__links" aria-label="Menú principal">
-      {links.map((l) => <a href={l.href}>{l.label}</a>)}
+      {links.map((l) => <a href={l.href} class={isActive(l.href) ? "active" : ""}>{l.label}</a>)}
     </nav>
 
-    <a href="#contacto" class="btn btn--dark nav__cta">Contáctanos</a>
+    <a href="/contacto" class="btn btn--dark nav__cta">Cotiza tu proyecto</a>
 
     <button class="nav__toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -28,8 +31,8 @@ const links = [
   </div>
 
   <div class="nav__mobile" id="navMobile">
-    {links.map((l) => <a href={l.href}>{l.label}</a>)}
-    <a href="#contacto" class="btn btn--dark">Contáctanos</a>
+    {links.map((l) => <a href={l.href} class={isActive(l.href) ? "active" : ""}>{l.label}</a>)}
+    <a href="/contacto" class="btn btn--dark">Cotiza tu proyecto</a>
   </div>
 </header>
 

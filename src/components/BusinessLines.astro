@@ -1,0 +1,47 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  alt?: boolean;
+}
+const { alt = false } = Astro.props;
+
+const lines = [
+  { icon: "lucide:building-2", title: "Proyectos para constructoras", text: "Dotación de cocinas y closets por lotes para vivienda nueva y proyectos inmobiliarios." },
+  { icon: "lucide:wrench", title: "Mantenimiento y restauración", text: "Pulido, retapizado y reparación de muebles para hogares, hoteles y oficinas." },
+  { icon: "lucide:calendar-clock", title: "Alquiler de mobiliario", text: "Renta de muebles para eventos, ferias, stands y salas de ventas." },
+  { icon: "lucide:package", title: "Catálogo de producto propio", text: "Línea de modelos listos para comprar en línea, con envío a todo el país." },
+  { icon: "lucide:pencil-ruler", title: "Diseño de interiores", text: "Asesoría y planeación de espacios para que cada ambiente fluya y luzca mejor." },
+  { icon: "lucide:leaf", title: "Línea ecológica", text: "Muebles en madera recuperada y materiales sostenibles para clientes eco-conscientes." },
+  { icon: "lucide:sun", title: "Mobiliario para exteriores", text: "Terrazas, jardines y zonas BBQ con maderas tratadas para la intemperie." },
+  { icon: "lucide:blocks", title: "Espacios infantiles", text: "Muebles seguros y creativos para habitaciones, jardines y ludotecas." },
+  { icon: "lucide:graduation-cap", title: "Cursos y talleres", text: "Clases de carpintería y acabados para quienes quieren aprender el oficio." },
+];
+---
+
+<section class={`section${alt ? " section--alt" : ""} section--glow`} id="lineas">
+  <div class="container">
+    <header class="section__head" data-reveal>
+      <span class="eyebrow">Líneas de negocio</span>
+      <h2>Más que fabricar muebles</h2>
+      <p>Soluciones en madera para distintas necesidades del mercado, en hogar y empresa.</p>
+    </header>
+
+    <div class="lines">
+      {
+        lines.map((l, i) => (
+          <article class="line" data-reveal style={`--d:${(i % 3) * 70}ms`}>
+            <span class="line__icon"><Icon name={l.icon} width="24" height="24" /></span>
+            <h3>{l.title}</h3>
+            <p>{l.text}</p>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="lines__cta" data-reveal>
+      <p>¿Te interesa alguna de estas líneas para tu hogar o negocio?</p>
+      <a href="/contacto" class="btn btn--primary">Hablemos de tu proyecto</a>
+    </div>
+  </div>
+</section>

@@ -3,6 +3,11 @@ import { site, google } from "../config/site";
 import GoogleTagManager from "../components/analytics/GoogleTagManager.astro";
 import GoogleTagManagerNoscript from "../components/analytics/GoogleTagManagerNoscript.astro";
 import GoogleGtag from "../components/analytics/GoogleGtag.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import WhatsAppFloat from "../components/WhatsAppFloat.astro";
+import AIChat from "../components/AIChat.astro";
+import Interactions from "../components/Interactions.astro";
 import "../styles/global.css";
 
 interface Props {
@@ -64,10 +69,7 @@ const jsonLd = {
     />
 
     <!-- Datos estructurados -->
-    <script
-      type="application/ld+json"
-      set:html={JSON.stringify(jsonLd)}
-    />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
     <!-- Google: GTM + GA4/Ads (solo si están configurados en .env) -->
     <GoogleTagManager />
@@ -75,6 +77,11 @@ const jsonLd = {
   </head>
   <body>
     <GoogleTagManagerNoscript />
+    <Nav />
     <slot />
+    <Footer />
+    <WhatsAppFloat />
+    <AIChat />
+    <Interactions />
   </body>
 </html>

@@ -1,0 +1,22 @@
+---
+import Layout from "../layouts/Layout.astro";
+import PageHeader from "../components/PageHeader.astro";
+import Projects from "../components/Projects.astro";
+import Reviews from "../components/Reviews.astro";
+import Cta from "../components/Cta.astro";
+---
+
+<Layout
+  title="Proyectos | Madeartes — Trabajos en madera"
+  description="Una selección de cocinas, closets, comedores y mobiliario corporativo que diseñamos, fabricamos e instalamos en hogares y empresas de Colombia."
+>
+  <PageHeader
+    eyebrow="Proyectos"
+    title="Trabajo que habla por sí solo"
+    text="Explora algunas de las piezas que hemos fabricado e instalado para hogares y empresas en todo el país."
+    current="Proyectos"
+  />
+  <Projects />
+  <Reviews />
+  <Cta />
+</Layout>

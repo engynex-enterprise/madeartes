@@ -3,7 +3,8 @@ import { Icon } from "astro-icon/components";
 import { ar } from "../config/site";
 ---
 
-<section class="section ar" id="ar">
+<section class="section ar section--dark section--glow" id="ar">
+  <div class="veil veil--lines"></div>
   <div class="container ar__inner">
     <div class="ar__copy" data-reveal>
       <span class="eyebrow">Realidad aumentada</span>
@@ -18,7 +19,7 @@ import { ar } from "../config/site";
         <li><Icon name="lucide:smartphone" width="20" height="20" /> AR en tu celular (iOS y Android)</li>
         <li><Icon name="lucide:ruler" width="20" height="20" /> Comprueba tamaño y proporción real</li>
       </ul>
-      <a href="#contacto" class="btn btn--primary">Quiero mi mueble a medida</a>
+      <a href="/contacto" class="btn btn--primary">Quiero mi mueble a medida</a>
     </div>
 
     <div class="ar__viewer" data-reveal>

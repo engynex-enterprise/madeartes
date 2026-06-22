@@ -1,0 +1,60 @@
+---
+import Layout from "../layouts/Layout.astro";
+import PageHeader from "../components/PageHeader.astro";
+import LegalNav from "../components/LegalNav.astro";
+import { site } from "../config/site";
+---
+
+<Layout
+  title="Política de cookies | Madeartes"
+  description="Información sobre las cookies y tecnologías de seguimiento que utiliza el sitio web de Madeartes."
+>
+  <PageHeader eyebrow="Legal" title="Política de cookies" current="Cookies" />
+
+  <section class="section legal">
+    <div class="container legal__wrap">
+      <span class="legal__updated">Última actualización: 21 de junio de 2026</span>
+
+      <p>
+        El sitio <strong>{site.url}</strong> de <strong>Madeartes</strong> utiliza cookies y
+        tecnologías similares para mejorar tu experiencia y entender cómo se usa el sitio.
+      </p>
+
+      <h2>1. ¿Qué son las cookies?</h2>
+      <p>
+        Son pequeños archivos que se almacenan en tu dispositivo cuando visitas un sitio
+        web. Permiten recordar tus preferencias y recopilar información estadística.
+      </p>
+
+      <h2>2. Tipos de cookies que usamos</h2>
+      <ul>
+        <li><strong>Necesarias:</strong> indispensables para el funcionamiento del sitio.</li>
+        <li><strong>Analíticas:</strong> de Google Analytics, para medir visitas y comportamiento de forma agregada.</li>
+        <li><strong>Marketing:</strong> de Google Ads / Tag Manager, para medir campañas y mostrar publicidad relevante.</li>
+      </ul>
+
+      <h2>3. Gestión de cookies</h2>
+      <p>
+        Puedes configurar o eliminar las cookies desde los ajustes de tu navegador. Ten en
+        cuenta que desactivarlas puede afectar algunas funciones del sitio. Consulta la
+        ayuda de tu navegador (Chrome, Safari, Firefox o Edge) para más detalle.
+      </p>
+
+      <h2>4. Cookies de terceros</h2>
+      <p>
+        Algunos servicios de Google pueden instalar sus propias cookies. Su tratamiento se
+        rige por las políticas de privacidad de dichos proveedores.
+      </p>
+
+      <h2>5. Más información</h2>
+      <p>
+        Para conocer cómo tratamos tus datos, consulta nuestra
+        <a href="/privacidad">Política de privacidad</a> y la
+        <a href="/tratamiento-datos">Política de tratamiento de datos</a>. Dudas:
+        [correo@madeartes.com] o WhatsApp {site.whatsappPretty}.
+      </p>
+
+      <LegalNav current="/cookies" />
+    </div>
+  </section>
+</Layout>

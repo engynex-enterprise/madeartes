@@ -27,7 +27,17 @@ madeartes/
     ├── config/site.ts      # lee el .env y centraliza la configuración
     ├── layouts/Layout.astro# <head>, SEO, datos estructurados, scripts Google
     ├── styles/global.css   # paleta tonos madera/nogal
-    ├── pages/index.astro   # ensambla la página
+    ├── layouts/Layout.astro# Nav + Footer + chat + SEO (compartido por todas las páginas)
+    ├── pages/              # sitio MULTIPÁGINA (una ruta por archivo):
+    │   ├── index.astro            # /            Inicio
+    │   ├── servicios.astro        # /servicios
+    │   ├── proyectos.astro        # /proyectos
+    │   ├── nosotros.astro         # /nosotros
+    │   ├── contacto.astro         # /contacto
+    │   ├── terminos.astro         # /terminos
+    │   ├── privacidad.astro       # /privacidad
+    │   ├── tratamiento-datos.astro# /tratamiento-datos
+    │   └── cookies.astro          # /cookies
     └── components/
         ├── Nav, Hero(slider), Partners, Services(bento), Projects(filtrable),
         │   Process(timeline), ARSection, WhyUs, Reviews, Faq, Cta, Contact,

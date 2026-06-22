@@ -34,22 +34,10 @@ import { Icon } from "astro-icon/components";
     revealEls.forEach((el) => io.observe(el));
   }
 
-  // ---------- Nav: sombra al hacer scroll + enlace activo ----------
+  // ---------- Nav: sombra al hacer scroll ----------
   const nav = document.querySelector<HTMLElement>(".nav");
-  const navLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>(".nav__links a"));
-  const sections = navLinks
-    .map((a) => document.querySelector<HTMLElement>(a.getAttribute("href") || ""))
-    .filter(Boolean) as HTMLElement[];
-
   const onScroll = () => {
     if (nav) nav.classList.toggle("nav--scrolled", window.scrollY > 8);
-    let current = "";
-    sections.forEach((sec) => {
-      if (window.scrollY >= sec.offsetTop - 120) current = "#" + sec.id;
-    });
-    navLinks.forEach((a) =>
-      a.classList.toggle("active", a.getAttribute("href") === current)
-    );
   };
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();

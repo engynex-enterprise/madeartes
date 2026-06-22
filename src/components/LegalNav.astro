@@ -1,0 +1,13 @@
+---
+const items = [
+  { href: "/terminos", label: "Términos y condiciones" },
+  { href: "/privacidad", label: "Política de privacidad" },
+  { href: "/tratamiento-datos", label: "Tratamiento de datos" },
+  { href: "/cookies", label: "Política de cookies" },
+];
+const { current } = Astro.props as { current: string };
+---
+
+<nav class="legal__nav" aria-label="Documentos legales">
+  {items.filter((i) => i.href !== current).map((i) => <a href={i.href}>{i.label}</a>)}
+</nav>
